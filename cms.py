@@ -46,14 +46,14 @@ def addName():
             
 def addContact(name):
     while True:
-        try:
-            contactNumber = int(input(f"enter number of {name} or enter * to change the name: "))
-            if contactNumber == "*":
-                break
-            return addingToDict(name,contactNumber)
-            
-        except TypeError:
-            print("enter valid input")
+        contactNumber = int(input(f"enter number of {name} or enter * to change the name: "))
+        if contactNumber == "*":
+            break
+        
+        return addingToDict(name,contactNumber)
+
+
+        
     
 def addingToDict(name, contact):
     print(f"name: {name}, contact: {contact}")
@@ -75,7 +75,7 @@ def find():
 
 def change():
     while True:
-        name = input("Enter the name to find or (enter * to back to main menu : ")
+        name = input("Enter the name to find or (enter * to back to main menu) : ")
         if name == "*":
             break
         if name.isalpha():
@@ -88,7 +88,9 @@ def change():
                         break
                     else:
                         contactList[name] = new_number  # Update the dictionary
-                        # saveFile()  # Save changes to the file
+                        contactList.update({name: new_number})  # Update the dictionary
+                        print(contactList)
+                        file()  # Save changes to the file
                         print(f"Updated {name}'s number to {new_number}")
                         break
                 except ValueError:
